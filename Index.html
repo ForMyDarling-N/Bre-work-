@@ -1,1 +1,2710 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="description" content="Braille Work - Stiker Braille premium untuk keyboard komputer dan laptop. Presisi tinggi, tahan air, ramah lingkungan, dan aksesibel untuk semua." />
+    <meta name="theme-color" content="#0f0e17" />
+    <title>Braille Work — Stiker Braille Premium</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Atkinson+Hyperlegible:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           RESET & VARIABEL
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0f0e17;
+            --bg-card: #1a1932;
+            --bg-soft: #232146;
+            --border: #2d2b55;
+            --border-glow: #4a47a3;
+            --text: #fffffe;
+            --text-soft: #a7a9be;
+            --text-muted: #6e6b8a;
+            --accent: #ff8906;
+            --accent-glow: #ff8906;
+            --primary: #0f0e17;
+            --focus: #ff8906;
+            --success: #2cb67d;
+            --radius: 20px;
+            --radius-lg: 32px;
+            --radius-pill: 60px;
+            --font: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            --font-display: 'Playfair Display', serif;
+            --font-size-base: 18px;
+            --line-height: 1.7;
+            --letter-spacing: 0.01em;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 40px rgba(255, 137, 6, 0.15);
+            --key-bg: #2d2b55;
+            --key-hover: #ff8906;
+            --key-pressed: #ff6b6b;
+        }
+
+        /* ============================================================
+           TEMA AKSESIBILITAS
+           ============================================================ */
+        body.hc {
+            --bg: #000;
+            --bg-card: #111;
+            --bg-soft: #222;
+            --border: #fff;
+            --text: #fff;
+            --text-soft: #fff;
+            --text-muted: #ddd;
+            --accent: #ffeb3b;
+            --key-bg: #333;
+        }
+        body.invert {
+            filter: invert(1) hue-rotate(180deg);
+        }
+        body.invert img,
+        body.invert video {
+            filter: invert(1) hue-rotate(180deg);
+        }
+        body.grayscale {
+            filter: grayscale(1);
+        }
+        body.dyslexic {
+            font-family: 'Atkinson Hyperlegible', 'Comic Sans MS', sans-serif !important;
+        }
+        body.dyslexic * {
+            font-family: inherit !important;
+        }
+        body.large-cursor,
+        body.large-cursor * {
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><path d='M4 4 L4 38 L14 28 L22 42 L28 38 L20 24 L34 24 Z' fill='black' stroke='white' stroke-width='2'/></svg>") 4 4, auto !important;
+        }
+        body.reduce-motion *,
+        body.reduce-motion *::before,
+        body.reduce-motion *::after {
+            animation-duration: 0.001s !important;
+            transition-duration: 0.001s !important;
+        }
+
+        /* ============================================================
+           BASE
+           ============================================================ */
+        html {
+            font-size: var(--font-size-base);
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: var(--line-height);
+            letter-spacing: var(--letter-spacing);
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        *:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 8px;
+        }
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 20px;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 14px 28px;
+            border-radius: 12px;
+            z-index: 10000;
+            font-weight: 600;
+            text-decoration: none;
+            transition: top 0.3s;
+        }
+        .skip-link:focus {
+            top: 20px;
+        }
+
+        .app {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px 40px;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 0 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 32px;
+            gap: 16px;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--border-glow);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .logo img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+        .brand h1 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+        .brand h1 span {
+            color: var(--accent);
+        }
+        .brand small {
+            display: block;
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            margin-top: 2px;
+        }
+        .header-cta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .header-cta .btn {
+            padding: 10px 24px;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+           BUTTONS
+           ============================================================ */
+        .btn {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 12px 32px;
+            border-radius: var(--radius-pill);
+            border: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 48px;
+            font-family: inherit;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(255, 137, 6, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--bg);
+            box-shadow: 0 8px 32px rgba(255, 137, 6, 0.2);
+        }
+        .btn-sm {
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            min-height: 40px;
+        }
+
+        /* ============================================================
+           NAVIGASI
+           ============================================================ */
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 8px;
+            padding: 8px 0 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 32px;
+        }
+        .nav button {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            padding: 10px 20px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 40px;
+            transition: var(--transition);
+            font-family: inherit;
+            min-height: 44px;
+            position: relative;
+        }
+        .nav button:hover {
+            color: var(--text);
+            background: var(--bg-card);
+        }
+        .nav button.active {
+            color: var(--text);
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+        }
+        .nav button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        /* ============================================================
+           PAGES
+           ============================================================ */
+        .page {
+            display: block;
+            animation: fadeUp 0.4s ease;
+        }
+        .page.hidden {
+            display: none;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 48px 56px;
+            margin-bottom: 40px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(255, 137, 6, 0.06), transparent 70%);
+            pointer-events: none;
+        }
+        .hero-text {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-text .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+        .hero-text h2 {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+        .hero-text h2 .highlight {
+            color: var(--accent);
+            position: relative;
+        }
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-soft);
+            max-width: 480px;
+            margin-bottom: 28px;
+            line-height: 1.8;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .hero-image {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-image img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            border-radius: 24px;
+            border: 2px solid var(--border-glow);
+            box-shadow: var(--shadow-glow);
+        }
+        .hero-image .floating-badge {
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 12px 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+        }
+        .hero-image .floating-badge strong {
+            color: var(--accent);
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 32px 24px;
+                text-align: center;
+            }
+            .hero-text p {
+                max-width: 100%;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-text h2 {
+                font-size: 2.4rem;
+            }
+        }
+
+        /* ============================================================
+           STATS
+           ============================================================ */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 32px 40px;
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat strong {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: var(--font-display);
+        }
+        .stat span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 24px 16px;
+                gap: 16px;
+            }
+            .stat strong {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ============================================================
+           SECTION TITLE
+           ============================================================ */
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title .accent-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        /* ============================================================
+           CARDS
+           ============================================================ */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+            margin: 20px 0 32px;
+        }
+        .card {
+            background: var(--bg-card);
+            padding: 28px 24px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-glow);
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .card p {
+            color: var(--text-soft);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           KEYBOARD DISPLAY
+           ============================================================ */
+        .keyboard-display {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            margin: 24px 0 32px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-glow);
+        }
+        .keyboard-display-title {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .keyboard-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 12px;
+            background: var(--bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            overflow-x: auto;
+        }
+        .key-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px 6px;
+        }
+        .key {
+            background: var(--key-bg);
+            color: var(--text);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 8px 8px;
+            min-width: 50px;
+            min-height: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.08s linear;
+            cursor: pointer;
+            font-family: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            position: relative;
+        }
+        .key .key-label {
+            font-size: 0.9rem;
+            line-height: 1;
+            font-weight: 700;
+        }
+        .key .key-braille {
+            font-size: 0.65rem;
+            line-height: 1;
+            color: var(--accent);
+            opacity: 0.7;
+        }
+        .key.special {
+            background: var(--bg-soft);
+            border-color: var(--border-glow);
+            min-width: 56px;
+        }
+        .key.space {
+            min-width: 180px;
+            background: var(--bg-soft);
+            border-color: var(--border-glow);
+        }
+        .key .key-hint {
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            line-height: 1;
+            margin-top: 1px;
+        }
+        .key.highlight {
+            background: var(--accent) !important;
+            color: var(--bg) !important;
+            border-color: var(--accent) !important;
+            box-shadow: 0 0 40px rgba(255, 137, 6, 0.5), 0 3px 0 var(--accent) !important;
+            transform: scale(1.05);
+            z-index: 2;
+        }
+        .key[data-pressed="true"] {
+            background: var(--key-pressed) !important;
+            color: #fff !important;
+            border-color: #ff6b6b !important;
+            box-shadow: 0 0 40px rgba(255, 107, 107, 0.5), 0 2px 0 #ff6b6b !important;
+            transform: translateY(2px) scale(1.02);
+        }
+        .key .pulse-ring {
+            position: absolute;
+            inset: -4px;
+            border-radius: 14px;
+            border: 3px solid var(--accent);
+            opacity: 0;
+            pointer-events: none;
+            animation: pulse-ring 0.6s ease-out forwards;
+        }
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
+        }
+        @media (max-width: 700px) {
+            .key {
+                min-width: 36px;
+                min-height: 36px;
+                font-size: 0.65rem;
+                padding: 4px 3px;
+            }
+            .key .key-label {
+                font-size: 0.65rem;
+            }
+            .key.space {
+                min-width: 60px;
+            }
+            .key-braille {
+                display: none;
+            }
+            .keyboard-display {
+                padding: 16px 10px;
+            }
+        }
+
+        /* ============================================================
+           KEYBOARD FEEDBACK
+           ============================================================ */
+        .key-feedback {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            margin: 16px 0 24px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--border);
+            gap: 16px;
+            min-height: 100px;
+        }
+        .key-feedback-info {
+            flex: 1;
+            min-width: 200px;
+        }
+        .key-feedback .nama {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            line-height: 1.2;
+        }
+        .key-feedback .nama .key-char {
+            font-size: 3rem;
+            display: inline-block;
+            color: var(--success);
+        }
+        .key-feedback .braille-display {
+            font-size: 2rem;
+            color: var(--success);
+            display: block;
+            margin-top: 2px;
+            font-weight: 700;
+            letter-spacing: 4px;
+        }
+        .key-feedback .fungsi {
+            color: var(--text-soft);
+            font-size: 1rem;
+            display: block;
+            margin-top: 2px;
+        }
+        .key-feedback .finger-guide {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-top: 4px;
+            background: var(--bg);
+            padding: 4px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+        .key-feedback .key-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* ============================================================
+           FINGER GUIDE
+           ============================================================ */
+        .finger-guide-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+            justify-content: center;
+            padding: 14px 24px;
+            background: var(--bg-card);
+            border-radius: var(--radius-pill);
+            margin: 12px 0 20px;
+            border: 1px solid var(--border);
+        }
+        .finger-guide-bar .finger-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: var(--text-soft);
+        }
+        .finger-guide-bar .finger-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 2px solid var(--border);
+            flex-shrink: 0;
+        }
+        .finger-dot.left-pinkie {
+            background: #ff6b6b;
+        }
+        .finger-dot.left-ring {
+            background: #ffa502;
+        }
+        .finger-dot.left-middle {
+            background: #ffd93d;
+        }
+        .finger-dot.left-index {
+            background: #6bcb77;
+        }
+        .finger-dot.right-index {
+            background: #4d96ff;
+        }
+        .finger-dot.right-middle {
+            background: #9b59b6;
+        }
+        .finger-dot.right-ring {
+            background: #e056a0;
+        }
+        .finger-dot.right-pinkie {
+            background: #ff6b6b;
+        }
+        .finger-dot.thumbs {
+            background: var(--accent);
+        }
+
+        /* ============================================================
+           SHORTCUT GRID
+           ============================================================ */
+        .shortcut-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 16px 0 24px;
+        }
+        .shortcut-item {
+            background: var(--bg-card);
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: var(--transition);
+        }
+        .shortcut-item:hover {
+            border-color: var(--border-glow);
+            transform: translateY(-2px);
+        }
+        .shortcut-item kbd {
+            background: var(--bg);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            border: 1px solid var(--border);
+            font-family: var(--font);
+            white-space: nowrap;
+            min-width: 60px;
+            text-align: center;
+        }
+        .shortcut-item .desc {
+            color: var(--text-soft);
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+           GALLERY
+           ============================================================ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 20px 0 32px;
+        }
+        .gallery-grid figure {
+            margin: 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            background: var(--bg-card);
+        }
+        .gallery-grid figure:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow-glow);
+        }
+        .gallery-grid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+        }
+        .gallery-grid figcaption {
+            padding: 10px 14px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* ============================================================
+           TESTIMONIAL
+           ============================================================ */
+        .testimonial {
+            background: var(--bg-card);
+            padding: 32px 36px;
+            border-radius: var(--radius);
+            margin: 24px 0 32px;
+            border-left: 4px solid var(--accent);
+            border: 1px solid var(--border);
+            border-left-width: 6px;
+        }
+        .testimonial .stars {
+            color: #ffd93d;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .testimonial blockquote {
+            font-size: 1.1rem;
+            color: var(--text);
+            font-style: italic;
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+        .testimonial cite {
+            color: var(--text-muted);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* ============================================================
+           FAQ
+           ============================================================ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 16px 0 32px;
+        }
+        .faq-item {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .faq-item:hover {
+            border-color: var(--border-glow);
+        }
+        .faq-question {
+            font-weight: 600;
+            padding: 18px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            font-size: 1rem;
+            min-height: 52px;
+            gap: 16px;
+        }
+        .faq-question:hover {
+            color: var(--accent);
+        }
+        .faq-toggle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .faq-toggle svg {
+            width: 14px;
+            height: 14px;
+            transition: var(--transition);
+        }
+        .faq-item.open .faq-toggle {
+            background: var(--accent);
+            color: var(--bg);
+        }
+        .faq-item.open .faq-toggle svg {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+            color: var(--text-soft);
+        }
+        .faq-answer-inner {
+            padding: 0 24px 20px;
+            line-height: 1.7;
+        }
+        .faq-answer-inner kbd {
+            background: var(--bg);
+            padding: 2px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            color: var(--accent);
+            font-family: var(--font);
+            font-size: 0.85rem;
+        }
+
+        /* ============================================================
+           TEAM & CONTACT
+           ============================================================ */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 20px 0 32px;
+        }
+        .info-box {
+            background: var(--bg-card);
+            padding: 28px 32px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        .info-box h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+        .info-box ul {
+            list-style: none;
+            color: var(--text-soft);
+            line-height: 2;
+        }
+        .info-box ul li strong {
+            color: var(--text);
+        }
+        .info-box .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-soft);
+            padding: 6px 0;
+        }
+        .info-box .contact-item .icon {
+            font-size: 1.2rem;
+            width: 32px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        @media (max-width: 700px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================================
+           ACCESSIBILITY PANEL
+           ============================================================ */
+        .a11y-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 8px 32px rgba(255, 137, 6, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .a11y-toggle:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 48px rgba(255, 137, 6, 0.6);
+        }
+        .a11y-toggle svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .a11y-panel {
+            position: fixed;
+            bottom: 96px;
+            right: 24px;
+            width: 340px;
+            max-width: calc(100vw - 48px);
+            max-height: calc(100vh - 140px);
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: var(--radius);
+            padding: 24px;
+            z-index: 9999;
+            box-shadow: var(--shadow);
+            overflow-y: auto;
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+        .a11y-panel.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .a11y-panel h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .a11y-panel h3 svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+        }
+        .a11y-group {
+            margin-bottom: 16px;
+        }
+        .a11y-group-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .a11y-btn-row {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .a11y-btn {
+            flex: 1;
+            min-width: 50px;
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: var(--transition);
+            min-height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        .a11y-btn:hover {
+            border-color: var(--accent);
+        }
+        .a11y-btn.active {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+        .a11y-slider {
+            width: 100%;
+            margin-top: 4px;
+            accent-color: var(--accent);
+        }
+        .a11y-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .a11y-close:hover {
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        /* ============================================================
+           MISC
+           ============================================================ */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        .live-region {
+            position: fixed;
+            bottom: 96px;
+            left: 24px;
+            background: var(--bg-card);
+            color: var(--text);
+            padding: 14px 24px;
+            border-radius: 16px;
+            max-width: 420px;
+            z-index: 9998;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            pointer-events: none;
+            border: 1px solid var(--border);
+            font-size: 1rem;
+        }
+        .live-region.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            backdrop-filter: blur(8px);
+        }
+        .modal.open {
+            display: flex;
+        }
+        .modal-content {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            padding: 20px;
+            position: relative;
+            border: 1px solid var(--border-glow);
+        }
+        .modal-content img {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 12px;
+            display: block;
+        }
+        .modal-caption {
+            margin-top: 12px;
+            color: var(--text-soft);
+            text-align: center;
+        }
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            margin-top: 56px;
+            border-top: 1px solid var(--border);
+            padding: 32px 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            color: var(--text-soft);
+        }
+        .footer-col {
+            flex: 1 0 160px;
+        }
+        .footer-col h4 {
+            font-family: var(--font-display);
+            margin-bottom: 10px;
+            color: var(--text);
+            font-size: 1rem;
+        }
+        .footer-col a {
+            display: block;
+            color: var(--text-soft);
+            text-decoration: none;
+            margin: 4px 0;
+            padding: 4px 0;
+            min-height: 32px;
+            transition: var(--transition);
+        }
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+        .footer-col p {
+            margin: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-col .icon {
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 768px) {
+            .app {
+                padding: 0 16px 32px;
+            }
+            .header {
+                padding: 16px 0;
+            }
+            .brand h1 {
+                font-size: 1.5rem;
+            }
+            .brand small {
+                font-size: 0.75rem;
+            }
+            .nav button {
+                font-size: 0.8rem;
+                padding: 6px 14px;
+                min-height: 36px;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+            .key-feedback .nama {
+                font-size: 1.8rem;
+            }
+            .key-feedback .nama .key-char {
+                font-size: 2.2rem;
+            }
+            .key-feedback .braille-display {
+                font-size: 1.5rem;
+            }
+            .a11y-panel {
+                right: 12px;
+                left: 12px;
+                width: auto;
+                bottom: 80px;
+            }
+            .a11y-toggle {
+                width: 54px;
+                height: 54px;
+                bottom: 16px;
+                right: 16px;
+            }
+            .shortcut-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .shortcut-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                padding: 16px;
+            }
+            .stat strong {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media print {
+            .a11y-toggle,
+            .a11y-panel,
+            .nav {
+                display: none !important;
+            }
+            body {
+                background: white;
+                color: black;
+            }
+            .key {
+                background: #eee !important;
+                color: #000 !important;
+                border-color: #999 !important;
+            }
+            .key.highlight {
+                background: #ffd700 !important;
+            }
+            .hero {
+                background: #f5f5f5 !important;
+            }
+            .card,
+            .info-box,
+            .testimonial,
+            .faq-item,
+            .keyboard-display {
+                background: #f5f5f5 !important;
+                border-color: #ccc !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SKIP LINK -->
+    <a href="#main" class="skip-link">Lewati ke konten utama</a>
+
+    <!-- LIVE REGION & ANNOUNCER -->
+    <div class="live-region" id="live-region" role="status" aria-live="polite"></div>
+    <div class="sr-only" role="status" aria-live="polite" id="sr-announce"></div>
+
+    <div class="app" id="main" role="main">
+
+        <!-- ========================================================== -->
+        <!-- HEADER -->
+        <!-- ========================================================== -->
+        <header class="header" role="banner">
+            <div class="brand">
+                <div class="logo" aria-hidden="true">
+                    <img src="https://files.catbox.moe/pwsd08.jpg" alt="" width="48" height="48" />
+                </div>
+                <div>
+                    <h1>Braille<span>Work</span></h1>
+                    <small>Stiker Braille Premium &amp; Keyboard Interaktif</small>
+                </div>
+            </div>
+            <div class="header-cta">
+                <button class="btn btn-sm" onclick="switchPage('keyboard')">Coba Keyboard</button>
+                <button class="btn btn-sm btn-outline" onclick="switchPage('tentang')">Tentang</button>
+            </div>
+        </header>
+
+        <!-- ========================================================== -->
+        <!-- NAVIGASI -->
+        <!-- ========================================================== -->
+        <nav class="nav" role="tablist" aria-label="Navigasi utama">
+            <button role="tab" aria-selected="true" data-page="beranda" class="active" id="tab-beranda" aria-controls="page-beranda">Beranda</button>
+            <button role="tab" aria-selected="false" data-page="keyboard" id="tab-keyboard" aria-controls="page-keyboard">Keyboard</button>
+            <button role="tab" aria-selected="false" data-page="tentang" id="tab-tentang" aria-controls="page-tentang">Tentang</button>
+            <button role="tab" aria-selected="false" data-page="galeri" id="tab-galeri" aria-controls="page-galeri">Galeri</button>
+            <button role="tab" aria-selected="false" data-page="faq" id="tab-faq" aria-controls="page-faq">FAQ</button>
+        </nav>
+
+        <!-- ========================================================== -->
+        <!-- BERANDA -->
+        <!-- ========================================================== -->
+        <div class="page" id="page-beranda" role="tabpanel" aria-labelledby="tab-beranda">
+
+            <!-- HERO -->
+            <section class="hero">
+                <div class="hero-text">
+                    <div class="badge">⭐ Produk Premium 2026</div>
+                    <h2>Stiker Braille <span class="highlight">Presisi Tinggi</span> untuk Semua</h2>
+                    <p>Dirancang khusus untuk tunanetra dan low vision. Tahan air, ramah lingkungan, dan dilengkapi dengan keyboard interaktif untuk pembelajaran optimal.</p>
+                    <div class="hero-actions">
+                        <button class="btn" onclick="switchPage('keyboard')">🎯 Coba Keyboard</button>
+                        <button class="btn btn-outline" onclick="switchPage('tentang')">Pelajari Kami</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://picsum.photos/id/1/500/400" alt="Stiker Braille Work di keyboard laptop" loading="lazy" />
+                    <div class="floating-badge">
+                        <strong>500+</strong> Pengguna Aktif
+                    </div>
+                </div>
+            </section>
+
+            <!-- STATS -->
+            <div class="stats">
+                <div class="stat"><strong>500+</strong><span>Pengguna</span></div>
+                <div class="stat"><strong>98%</strong><span>Tingkat Kepuasan</span></div>
+                <div class="stat"><strong>2026</strong><span>Tahun Berdiri</span></div>
+                <div class="stat"><strong>15+</strong><span>Sekolah & Mitra</span></div>
+            </div>
+
+            <!-- FITUR UTAMA -->
+            <h3 class="section-title">Fitur Unggulan <span class="accent-line"></span></h3>
+            <div class="card-grid">
+                <div class="card">
+                    <span class="card-icon">🔊</span>
+                    <h3>Panduan Suara</h3>
+                    <p>Setiap tombol dibacakan dengan jelas. Dilengkapi informasi posisi jari dan arah pergerakan.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">📳</span>
+                    <h3>Getaran Haptic</h3>
+                    <p>Umpan balik getaran saat menekan tombol. Membantu pengguna tunanetra merasakan setiap input.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">👆</span>
+                    <h3>Panduan Jari</h3>
+                    <p>Setiap tombol dilengkapi petunjuk jari mana yang harus digunakan dan arah pergerakannya.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🎯</span>
+                    <h3>Tampilan Besar</h3>
+                    <p>Keyboard di layar dengan ukuran besar dan warna cerah. Mudah dilihat untuk pengguna low vision.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">♿</span>
+                    <h3>Aksesibel 100%</h3>
+                    <p>Dirancang khusus untuk tunanetra dan low vision. Mendukung pembaca layar dan navigasi keyboard.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🌿</span>
+                    <h3>Ramah Lingkungan</h3>
+                    <p>Stiker berbahan ramah lingkungan, tahan air, dan presisi tinggi untuk penggunaan jangka panjang.</p>
+                </div>
+            </div>
+
+            <!-- TESTIMONIAL -->
+            <div class="testimonial">
+                <div class="stars">★★★★★</div>
+                <blockquote>"Stiker Braille Work benar-benar mengubah cara saya mengetik. Panduan jarinya sangat membantu, dan suaranya jelas. Sangat direkomendasikan!"</blockquote>
+                <cite>— Andi, Pengguna Tunanetra</cite>
+            </div>
+
+            <!-- TEAM & CONTACT -->
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>👥 Tim Braille Work</h3>
+                    <ul>
+                        <li><strong>Nayla Genta Saka</strong> — Ketua Tim</li>
+                        <li>Zahirah Ramadhani</li>
+                        <li>Miftahul Khairiah</li>
+                        <li>Reyno Fahreza Andin</li>
+                        <li>Bima Ajie Bhagaskara</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <h3>📍 Kontak & Lokasi</h3>
+                    <div class="contact-item"><span class="icon">📍</span> Universitas Negeri Jakarta</div>
+                    <div class="contact-item"><span class="icon">📞</span> 0895327390367</div>
+                    <div class="contact-item"><span class="icon">✉️</span> support@braillework.id</div>
+                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
+                        <p style="color:var(--text-muted);font-size:0.85rem;">Scan QR Code pada kartu marketing untuk langsung mengunjungi beranda ini.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANDUAN AKSESIBILITAS -->
+            <div style="background:var(--bg-card);border-radius:var(--radius);padding:28px 32px;margin:20px 0 32px;border:1px solid var(--border-glow);">
+                <h3 style="font-family:var(--font-display);color:var(--accent);margin-bottom:12px;">♿ Panduan Mengaktifkan Menu Aksesibilitas</h3>
+                <div style="color:var(--text-soft);line-height:2;">
+                    <p><strong>Di Laptop / Komputer:</strong></p>
+                    <ul style="padding-left:24px;margin:6px 0;">
+                        <li>Tekan <kbd style="background:var(--bg);padding:2px 12px;border-radius:4px;border:1px solid var(--border);color:var(--accent);font-family:var(--font);">Alt + A</kbd> untuk membuka atau menutup panel aksesibilitas.</li>
+                        <li>Di dalam panel, Anda bisa mengatur:
+                            <ul style="padding-left:24px;">
+                                <li><strong>Ukuran teks</strong> (A-, A, A+)</li>
+                                <li><strong>Kontras tinggi</strong> untuk keterbacaan maksimal</li>
+                                <li><strong>Mode skala abu-abu</strong> atau inversi warna</li>
+                                <li><strong>Font ramah disleksia</strong></li>
+                                <li><strong>Kursor besar</strong> untuk memudahkan melihat pointer</li>
+                                <li><strong>Kurangi animasi</strong> bagi yang sensitif terhadap gerakan</li>
+                            </ul>
+                        </li>
+                        <li>Semua pengaturan akan disimpan secara otomatis di browser Anda.</li>
+                    </ul>
+                    <p style="margin-top:8px;"><strong>Tips:</strong> Gunakan tombol <kbd style="background:var(--bg);padding:2px 12px;border-radius:4px;border:1px solid var(--border);color:var(--accent);font-family:var(--font);">Tab</kbd> dan <kbd style="background:var(--bg);padding:2px 12px;border-radius:4px;border:1px solid var(--border);color:var(--accent);font-family:var(--font);">Enter</kbd> untuk navigasi tanpa mouse.</p>
+                </div>
+            </div>
+
+            <!-- PRODUK -->
+            <div style="background:var(--bg-card);border-radius:var(--radius);padding:28px 32px;margin:20px 0 32px;border:1px solid var(--border);text-align:center;">
+                <h3 style="font-family:var(--font-display);color:var(--accent);margin-bottom:12px;">✨ Produk Kami: Stiker Braille Work</h3>
+                <p style="color:var(--text-soft);max-width:600px;margin:0 auto 16px;">
+                    Stiker Braille premium untuk keyboard komputer dan laptop. Presisi tinggi, tahan air, ramah lingkungan, dan aksesibel untuk semua.
+                </p>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+                    <span style="background:var(--bg);padding:6px 20px;border-radius:40px;border:1px solid var(--border);color:var(--text-soft);font-size:0.85rem;">Presisi Tinggi</span>
+                    <span style="background:var(--bg);padding:6px 20px;border-radius:40px;border:1px solid var(--border);color:var(--text-soft);font-size:0.85rem;">Tahan Air</span>
+                    <span style="background:var(--bg);padding:6px 20px;border-radius:40px;border:1px solid var(--border);color:var(--text-soft);font-size:0.85rem;">Ramah Lingkungan</span>
+                    <span style="background:var(--bg);padding:6px 20px;border-radius:40px;border:1px solid var(--border);color:var(--text-soft);font-size:0.85rem;">Aksesibel</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- KEYBOARD PAGE -->
+        <!-- ========================================================== -->
+        <div class="page hidden" id="page-keyboard" role="tabpanel" aria-labelledby="tab-keyboard">
+            <h2 style="font-family:var(--font-display);font-size:2rem;color:var(--accent);margin-bottom:8px;">⌨️ Keyboard Interaktif</h2>
+            <p style="color:var(--text-soft);margin-bottom:16px;font-size:1.1rem;">
+                Tekan tombol di keyboard fisik Anda atau klik tombol di layar. Dapatkan <strong>panduan suara</strong>, <strong>getaran</strong>, dan <strong>informasi posisi jari</strong>.
+            </p>
+
+            <!-- FINGER GUIDE -->
+            <div class="finger-guide-bar" role="list" aria-label="Panduan posisi jari">
+                <span class="finger-item"><span class="finger-dot left-pinkie"></span> Kelingking kiri</span>
+                <span class="finger-item"><span class="finger-dot left-ring"></span> Jari manis kiri</span>
+                <span class="finger-item"><span class="finger-dot left-middle"></span> Jari tengah kiri</span>
+                <span class="finger-item"><span class="finger-dot left-index"></span> Jari telunjuk kiri</span>
+                <span class="finger-item"><span class="finger-dot right-index"></span> Jari telunjuk kanan</span>
+                <span class="finger-item"><span class="finger-dot right-middle"></span> Jari tengah kanan</span>
+                <span class="finger-item"><span class="finger-dot right-ring"></span> Jari manis kanan</span>
+                <span class="finger-item"><span class="finger-dot right-pinkie"></span> Kelingking kanan</span>
+                <span class="finger-item"><span class="finger-dot thumbs"></span> Jempol (Spasi)</span>
+            </div>
+
+            <!-- KEYBOARD -->
+            <div class="keyboard-display">
+                <div class="keyboard-display-title">Tekan Tombol di Keyboard Anda</div>
+                <div class="keyboard-container" id="keyboard-container" role="application" aria-label="Keyboard interaktif"></div>
+            </div>
+
+            <!-- FEEDBACK -->
+            <div class="key-feedback" id="key-feedback" aria-live="polite">
+                <div class="key-feedback-info">
+                    <span class="nama" id="tombol-nama">
+                        <span class="key-char">⌨️</span>
+                        Tekan sebuah tombol
+                    </span>
+                    <span class="braille-display" id="tombol-braille" aria-label="Simbol Braille"></span>
+                    <span class="fungsi" id="tombol-fungsi">Informasi tombol akan muncul di sini</span>
+                    <span class="finger-guide" id="tombol-finger">👆 Panduan jari akan muncul di sini</span>
+                </div>
+                <div class="key-actions">
+                    <button class="btn btn-sm" id="btn-ulang" aria-label="Ulangi suara">🔊 Ulangi</button>
+                    <button class="btn btn-sm btn-outline" id="btn-vibrate" aria-label="Test getaran">📳 Getar</button>
+                    <button class="btn btn-sm btn-outline" id="btn-reset-highlight" aria-label="Reset sorotan">↺ Reset</button>
+                </div>
+            </div>
+
+            <!-- TIPS -->
+            <div style="background:var(--bg-card);padding:16px 24px;border-radius:var(--radius);border:1px solid var(--border);margin:12px 0 24px;">
+                <p style="color:var(--text-soft);font-size:0.95rem;">
+                    <strong>💡 Tips:</strong> Gunakan tombol <kbd style="background:var(--bg);padding:2px 12px;border-radius:4px;border:1px solid var(--border);color:var(--accent);font-family:var(--font);">F1-F12</kbd> untuk fungsi khusus. 
+                    Tekan <kbd style="background:var(--bg);padding:2px 12px;border-radius:4px;border:1px solid var(--border);color:var(--accent);font-family:var(--font);">Shift</kbd> + huruf untuk kapital.
+                    Panduan jari membantu Anda mengetik tanpa melihat keyboard.
+                </p>
+            </div>
+
+            <!-- SHORTCUTS -->
+            <h3 class="section-title">🎯 Pintasan Keyboard <span class="accent-line"></span></h3>
+            <div class="shortcut-grid">
+                <div class="shortcut-item"><kbd>Ctrl + C</kbd><span class="desc">Salin</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + V</kbd><span class="desc">Tempel</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + X</kbd><span class="desc">Potong</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + Z</kbd><span class="desc">Urungkan</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + Y</kbd><span class="desc">Ulangi</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + A</kbd><span class="desc">Pilih semua</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + S</kbd><span class="desc">Simpan</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + P</kbd><span class="desc">Cetak</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + F</kbd><span class="desc">Cari</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + H</kbd><span class="desc">Ganti</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + N</kbd><span class="desc">Buat baru</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + O</kbd><span class="desc">Buka file</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + W</kbd><span class="desc">Tutup tab</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + T</kbd><span class="desc">Tab baru</span></div>
+                <div class="shortcut-item"><kbd>Alt + Tab</kbd><span class="desc">Beralih aplikasi</span></div>
+                <div class="shortcut-item"><kbd>Alt + F4</kbd><span class="desc">Tutup jendela</span></div>
+                <div class="shortcut-item"><kbd>Ctrl + Shift + Esc</kbd><span class="desc">Task Manager</span></div>
+                <div class="shortcut-item"><kbd>Win + D</kbd><span class="desc">Tampilkan desktop</span></div>
+                <div class="shortcut-item"><kbd>Win + E</kbd><span class="desc">Buka File Explorer</span></div>
+                <div class="shortcut-item"><kbd>Win + L</kbd><span class="desc">Kunci layar</span></div>
+                <div class="shortcut-item"><kbd>Win + I</kbd><span class="desc">Pengaturan</span></div>
+                <div class="shortcut-item"><kbd>Win + S</kbd><span class="desc">Pencarian</span></div>
+            </div>
+
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- TENTANG -->
+        <!-- ========================================================== -->
+        <div class="page hidden" id="page-tentang" role="tabpanel" aria-labelledby="tab-tentang">
+            <h2 style="font-family:var(--font-display);font-size:2.2rem;color:var(--text);">Tentang Braille Work</h2>
+            <div style="display:flex;flex-wrap:wrap;gap:32px;margin:20px 0 32px;">
+                <img src="https://picsum.photos/id/20/500/300" alt="Tim Braille Work" style="border-radius:var(--radius);flex:1 1 240px;object-fit:cover;border:1px solid var(--border);" />
+                <div style="flex:2 1 260px;">
+                    <p style="color:var(--text-soft);font-size:1.05rem;line-height:1.8;">
+                        <strong>Braille Work</strong> adalah platform pembelajaran keyboard interaktif yang dirancang khusus untuk tunanetra dan low vision.
+                    </p>
+                    <p style="color:var(--text-soft);margin-top:12px;line-height:1.8;">
+                        Kami percaya bahwa setiap orang berhak mengakses teknologi. Dengan panduan suara, getaran, dan visual yang jelas, kami membantu semua orang belajar mengetik dengan percaya diri.
+                    </p>
+                    <p style="color:var(--text-soft);margin-top:12px;line-height:1.8;">
+                        Produk kami berupa stiker Braille presisi tinggi yang dapat ditempelkan pada keyboard laptop atau komputer, membuat setiap tombol dapat dirasakan dan dikenali.
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="section-title">Perjalanan Kami <span class="accent-line"></span></h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px;background:var(--bg-card);padding:32px 36px;border-radius:var(--radius);border:1px solid var(--border);">
+                <div><strong style="display:block;font-family:var(--font-display);font-size:2rem;color:var(--accent);">2026</strong><span style="color:var(--text-muted);">Berdiri & produk pertama</span></div>
+                <div><strong style="display:block;font-family:var(--font-display);font-size:2rem;color:var(--accent);">2026</strong><span style="color:var(--text-muted);">Rilis keyboard interaktif</span></div>
+                <div><strong style="display:block;font-family:var(--font-display);font-size:2rem;color:var(--accent);">2027</strong><span style="color:var(--text-muted);">Kerjasama 10+ sekolah</span></div>
+                <div><strong style="display:block;font-family:var(--font-display);font-size:2rem;color:var(--accent);">2028</strong><span style="color:var(--text-muted);">Ekspansi CSR perusahaan</span></div>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- GALERI -->
+        <!-- ========================================================== -->
+        <div class="page hidden" id="page-galeri" role="tabpanel" aria-labelledby="tab-galeri">
+            <h2 style="font-family:var(--font-display);font-size:2rem;color:var(--text);">Galeri Aktivitas</h2>
+            <p style="color:var(--text-muted);margin-bottom:16px;">Klik gambar untuk melihat lebih besar.</p>
+            <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- FAQ -->
+        <!-- ========================================================== -->
+        <div class="page hidden" id="page-faq" role="tabpanel" aria-labelledby="tab-faq">
+            <h2 style="font-family:var(--font-display);font-size:2rem;color:var(--text);">Pertanyaan Umum</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Bagaimana cara menggunakan keyboard ini?</span>
+                        <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Cukup tekan tombol di keyboard fisik Anda atau klik tombol di layar. Anda akan mendapatkan panduan suara, getaran, dan informasi posisi jari.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Apa itu panduan posisi jari?</span>
+                        <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Panduan posisi jari memberi tahu jari mana yang harus digunakan untuk menekan tombol tertentu. Ini membantu Anda belajar mengetik tanpa melihat keyboard.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Bagaimana dengan getaran?</span>
+                        <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Getaran (haptic feedback) memberikan umpan balik fisik saat Anda menekan tombol. Ini sangat membantu bagi pengguna tunanetra.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Apakah bisa digunakan tanpa melihat layar?</span>
+                        <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Ya! Keyboard ini dirancang untuk pengguna tunanetra. Semua informasi disampaikan melalui suara dan getaran.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Apakah situs ini aksesibel untuk pembaca layar?</span>
+                        <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Ya. Situs ini mendukung pembaca layar, navigasi keyboard penuh, kontras tinggi, dan berbagai fitur aksesibilitas lainnya.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Bagaimana cara mengaktifkan menu aksesibilitas?</span>
+                        <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Tekan <kbd>Alt + A</kbd> untuk membuka panel aksesibilitas. Di dalamnya Anda bisa mengatur ukuran teks, kontras, font, dan lainnya.</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- FOOTER -->
+        <!-- ========================================================== -->
+        <footer class="footer" role="contentinfo">
+            <div class="footer-col">
+                <h4>Braille Work</h4>
+                <p><span class="icon">📍</span> Universitas Negeri Jakarta</p>
+                <p><span class="icon">📞</span> 0895327390367</p>
+                <p><span class="icon">✉️</span> support@braillework.id</p>
+            </div>
+            <div class="footer-col">
+                <h4>Ikuti Kami</h4>
+                <a href="#">Instagram</a>
+                <a href="#">TikTok</a>
+                <a href="#">YouTube</a>
+            </div>
+            <div class="footer-col">
+                <h4>Jam Operasional</h4>
+                <p>Senin - Jumat: 08.00 - 17.00</p>
+                <p>Sabtu: 09.00 - 13.00</p>
+                <p>Minggu: Tutup</p>
+            </div>
+            <div class="footer-col">
+                <h4>Lokasi</h4>
+                <p>📍 Jakarta, Indonesia</p>
+                <a href="#" style="margin-top:8px;">Lihat di Peta</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ========================================================== -->
+    <!-- AKSESIBILITAS: TOGGLE & PANEL -->
+    <!-- ========================================================== -->
+    <button class="a11y-toggle" id="a11y-toggle" aria-label="Buka panel aksesibilitas" aria-expanded="false" aria-controls="a11y-panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="4" r="2"/>
+            <path d="M12 8v6M8 20l4-6 4 6M6 12h12"/>
+        </svg>
+    </button>
+
+    <div class="a11y-panel" id="a11y-panel" role="dialog" aria-label="Pengaturan aksesibilitas" aria-hidden="true">
+        <button class="a11y-close" id="a11y-close" aria-label="Tutup panel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+        <h3>♿ Aksesibilitas</h3>
+
+        <div class="a11y-group">
+            <div class="a11y-group-label">Ukuran Teks</div>
+            <div class="a11y-btn-row">
+                <button class="a11y-btn" data-action="font-dec">A-</button>
+                <button class="a11y-btn" data-action="font-reset">A</button>
+                <button class="a11y-btn" data-action="font-inc">A+</button>
+            </div>
+        </div>
+
+        <div class="a11y-group">
+            <div class="a11y-group-label">Tampilan</div>
+            <div class="a11y-btn-row">
+                <button class="a11y-btn" data-action="toggle" data-target="hc" aria-pressed="false">Kontras</button>
+                <button class="a11y-btn" data-action="toggle" data-target="grayscale" aria-pressed="false">Abu-abu</button>
+                <button class="a11y-btn" data-action="toggle" data-target="invert" aria-pressed="false">Inversi</button>
+            </div>
+        </div>
+
+        <div class="a11y-group">
+            <div class="a11y-group-label">Teks & Baca</div>
+            <div class="a11y-btn-row">
+                <button class="a11y-btn" data-action="toggle" data-target="dyslexic" aria-pressed="false">Disleksia</button>
+                <button class="a11y-btn" data-action="toggle" data-target="large-cursor" aria-pressed="false">Kursor Besar</button>
+                <button class="a11y-btn" data-action="toggle" data-target="reduce-motion" aria-pressed="false">Hemat Gerak</button>
+            </div>
+        </div>
+
+        <div class="a11y-group">
+            <div class="a11y-group-label">Jarak Baris: <span id="line-height-val">1.7</span></div>
+            <input type="range" class="a11y-slider" id="line-height" min="1.2" max="2.8" step="0.1" value="1.7" aria-label="Jarak baris" />
+        </div>
+
+        <div class="a11y-group">
+            <div class="a11y-group-label">Jarak Huruf: <span id="letter-spacing-val">0.01</span>em</div>
+            <input type="range" class="a11y-slider" id="letter-spacing" min="0" max="0.3" step="0.01" value="0.01" aria-label="Jarak huruf" />
+        </div>
+
+        <div class="a11y-btn-row" style="margin-top:16px;">
+            <button class="a11y-btn" data-action="reset" style="flex:1;background:var(--bg);border-color:var(--border);">Reset Semua</button>
+        </div>
+    </div>
+
+    <!-- ========================================================== -->
+    <!-- MODAL GALERI -->
+    <!-- ========================================================== -->
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Pratinjau gambar">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close" aria-label="Tutup">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <img id="modal-img" src="" alt="" />
+            <div class="modal-caption" id="modal-caption"></div>
+        </div>
+    </div>
+
+    <!-- ========================================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================================================== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // DATA
+            // ============================================================
+
+            const fingerMap = {
+                'a': '👆 Jari telunjuk kiri',
+                's': '👆 Jari manis kiri',
+                'd': '👆 Jari tengah kiri',
+                'f': '👆 Jari telunjuk kiri',
+                'g': '👆 Jari telunjuk kiri',
+                'h': '👆 Jari telunjuk kanan',
+                'j': '👆 Jari telunjuk kanan',
+                'k': '👆 Jari tengah kanan',
+                'l': '👆 Jari manis kanan',
+                ';': '👆 Jari manis kanan',
+                'q': '👆 Jari kelingking kiri',
+                'w': '👆 Jari manis kiri',
+                'e': '👆 Jari tengah kiri',
+                'r': '👆 Jari telunjuk kiri',
+                't': '👆 Jari telunjuk kiri',
+                'y': '👆 Jari telunjuk kanan',
+                'u': '👆 Jari telunjuk kanan',
+                'i': '👆 Jari tengah kanan',
+                'o': '👆 Jari manis kanan',
+                'p': '👆 Jari kelingking kanan',
+                'z': '👆 Jari kelingking kiri',
+                'x': '👆 Jari manis kiri',
+                'c': '👆 Jari tengah kiri',
+                'v': '👆 Jari telunjuk kiri',
+                'b': '👆 Jari telunjuk kiri',
+                'n': '👆 Jari telunjuk kanan',
+                'm': '👆 Jari telunjuk kanan',
+                '1': '👆 Jari kelingking kiri',
+                '2': '👆 Jari manis kiri',
+                '3': '👆 Jari tengah kiri',
+                '4': '👆 Jari telunjuk kiri',
+                '5': '👆 Jari telunjuk kiri',
+                '6': '👆 Jari telunjuk kanan',
+                '7': '👆 Jari telunjuk kanan',
+                '8': '👆 Jari tengah kanan',
+                '9': '👆 Jari manis kanan',
+                '0': '👆 Jari kelingking kanan',
+                'Space': '👍 Jempol (Spasi)',
+                'Enter': '👆 Jari kelingking kanan (Enter)',
+                'Backspace': '👆 Jari kelingking kanan (Backspace)',
+                'Tab': '👆 Jari kelingking kiri (Tab)',
+                'CapsLock': '👆 Jari kelingking kiri (Caps Lock)',
+                'ShiftLeft': '👆 Jari kelingking kiri (Shift)',
+                'ShiftRight': '👆 Jari kelingking kanan (Shift)',
+                'ControlLeft': '👆 Jari kelingking kiri (Ctrl)',
+                'ControlRight': '👆 Jari kelingking kanan (Ctrl)',
+                'AltLeft': '👍 Jempol kiri (Alt)',
+                'AltRight': '👍 Jempol kanan (Alt)',
+                'MetaLeft': '👍 Jempol kiri (Windows)',
+                'MetaRight': '👍 Jempol kanan (Windows)',
+                'ArrowUp': '👆 Jari tengah kanan (↑)',
+                'ArrowDown': '👆 Jari tengah kanan (↓)',
+                'ArrowLeft': '👆 Jari manis kanan (←)',
+                'ArrowRight': '👆 Jari manis kanan (→)',
+                'Delete': '👆 Jari manis kanan (Delete)',
+                'Home': '👆 Jari manis kanan (Home)',
+                'End': '👆 Jari manis kanan (End)',
+                'PageUp': '👆 Jari manis kanan (Page Up)',
+                'PageDown': '👆 Jari manis kanan (Page Down)',
+                'Insert': '👆 Jari manis kanan (Insert)',
+                'Escape': '👆 Jari kelingking kiri (Esc)'
+            };
+
+            const comboGuide = {
+                'Shift': 'Tekan Shift + huruf untuk membuat huruf kapital',
+                'Control': 'Tekan Ctrl + huruf untuk pintasan',
+                'Alt': 'Tekan Alt + Tab untuk beralih aplikasi',
+                'Meta': 'Tekan Windows + D untuk menampilkan desktop'
+            };
+
+            const galleryData = [
+                { id: 1, caption: 'Belajar keyboard dengan panduan suara' },
+                { id: 2, caption: 'Keyboard dengan stiker Braille' },
+                { id: 3, caption: 'Pengguna tunanetra belajar mengetik' },
+                { id: 4, caption: 'Proses produksi stiker' },
+                { id: 5, caption: 'Detail titik Braille' },
+                { id: 6, caption: 'Kemasan produk' },
+                { id: 7, caption: 'Proses pengiriman' },
+                { id: 8, caption: 'Tampak dekat keyboard' }
+            ];
+
+            const brailleMap = {
+                'a': '⠁',
+                'b': '⠃',
+                'c': '⠉',
+                'd': '⠙',
+                'e': '⠑',
+                'f': '⠋',
+                'g': '⠛',
+                'h': '⠓',
+                'i': '⠊',
+                'j': '⠚',
+                'k': '⠅',
+                'l': '⠇',
+                'm': '⠍',
+                'n': '⠝',
+                'o': '⠕',
+                'p': '⠏',
+                'q': '⠟',
+                'r': '⠗',
+                's': '⠎',
+                't': '⠞',
+                'u': '⠥',
+                'v': '⠧',
+                'w': '⠺',
+                'x': '⠭',
+                'y': '⠽',
+                'z': '⠵',
+                '1': '⠼⠁',
+                '2': '⠼⠃',
+                '3': '⠼⠉',
+                '4': '⠼⠙',
+                '5': '⠼⠑',
+                '6': '⠼⠋',
+                '7': '⠼⠛',
+                '8': '⠼⠓',
+                '9': '⠼⠊',
+                '0': '⠼⠚'
+            };
+
+            const keyInfo = {
+                'Escape': ['Escape', 'Tombol keluar atau batal'],
+                'Tab': ['Tab', 'Pindah fokus ke elemen berikutnya'],
+                'CapsLock': ['Caps Lock', 'Aktifkan huruf kapital semua'],
+                'ShiftLeft': ['Shift Kiri', 'Tombol pengubah untuk huruf kapital dan simbol'],
+                'ShiftRight': ['Shift Kanan', 'Tombol pengubah untuk huruf kapital dan simbol'],
+                'ControlLeft': ['Ctrl Kiri', 'Tombol kontrol untuk pintasan keyboard'],
+                'ControlRight': ['Ctrl Kanan', 'Tombol kontrol untuk pintasan keyboard'],
+                'AltLeft': ['Alt Kiri', 'Tombol alternatif untuk menu dan pintasan'],
+                'AltRight': ['Alt Kanan', 'Tombol alternatif untuk menu dan pintasan'],
+                'MetaLeft': ['Windows', 'Buka menu start'],
+                'MetaRight': ['Windows', 'Buka menu start'],
+                'Space': ['Spasi', 'Karakter spasi kosong'],
+                'Enter': ['Enter', 'Konfirmasi atau baris baru'],
+                'Backspace': ['Backspace', 'Hapus karakter di kiri kursor'],
+                'Delete': ['Delete', 'Hapus karakter di kanan kursor'],
+                'Insert': ['Insert', 'Mode sisip teks'],
+                'Home': ['Home', 'Pindah ke awal baris'],
+                'End': ['End', 'Pindah ke akhir baris'],
+                'PageUp': ['Page Up', 'Gulir satu halaman ke atas'],
+                'PageDown': ['Page Down', 'Gulir satu halaman ke bawah'],
+                'ArrowLeft': ['Panah Kiri', 'Pindah kursor ke kiri'],
+                'ArrowRight': ['Panah Kanan', 'Pindah kursor ke kanan'],
+                'ArrowUp': ['Panah Atas', 'Pindah kursor ke atas'],
+                'ArrowDown': ['Panah Bawah', 'Pindah kursor ke bawah'],
+                '`': ['Backtick', 'Tanda kutip terbalik'],
+                '-': ['Strip', 'Tanda hubung atau minus'],
+                '=': ['Sama dengan', 'Tanda sama dengan'],
+                '[': ['Kurung Siku Buka', 'Pembuka kurung siku'],
+                ']': ['Kurung Siku Tutup', 'Penutup kurung siku'],
+                '\\': ['Backslash', 'Garis miring terbalik'],
+                ';': ['Titik Koma', 'Tanda titik koma'],
+                '\'': ['Kutip Satu', 'Tanda kutip tunggal'],
+                ',': ['Koma', 'Tanda koma'],
+                '.': ['Titik', 'Tanda titik'],
+                '/': ['Garis Miring', 'Tanda garis miring']
+            };
+
+            const keyboardLayout = [
+                [
+                    ['Escape', 'Esc'],
+                    ['F1', 'F1'],
+                    ['F2', 'F2'],
+                    ['F3', 'F3'],
+                    ['F4', 'F4'],
+                    ['F5', 'F5'],
+                    ['F6', 'F6'],
+                    ['F7', 'F7'],
+                    ['F8', 'F8'],
+                    ['F9', 'F9'],
+                    ['F10', 'F10'],
+                    ['F11', 'F11'],
+                    ['F12', 'F12']
+                ],
+                [
+                    ['`', '`'],
+                    ['1', '1'],
+                    ['2', '2'],
+                    ['3', '3'],
+                    ['4', '4'],
+                    ['5', '5'],
+                    ['6', '6'],
+                    ['7', '7'],
+                    ['8', '8'],
+                    ['9', '9'],
+                    ['0', '0'],
+                    ['-', '-'],
+                    ['=', '='],
+                    ['Backspace', '⌫']
+                ],
+                [
+                    ['Tab', 'Tab'],
+                    ['q', 'Q'],
+                    ['w', 'W'],
+                    ['e', 'E'],
+                    ['r', 'R'],
+                    ['t', 'T'],
+                    ['y', 'Y'],
+                    ['u', 'U'],
+                    ['i', 'I'],
+                    ['o', 'O'],
+                    ['p', 'P'],
+                    ['[', '['],
+                    [']', ']'],
+                    ['\\', '\\']
+                ],
+                [
+                    ['CapsLock', '⇪'],
+                    ['a', 'A'],
+                    ['s', 'S'],
+                    ['d', 'D'],
+                    ['f', 'F'],
+                    ['g', 'G'],
+                    ['h', 'H'],
+                    ['j', 'J'],
+                    ['k', 'K'],
+                    ['l', 'L'],
+                    [';', ';'],
+                    ['\'', '\''],
+                    ['Enter', '↵']
+                ],
+                [
+                    ['ShiftLeft', '⇧'],
+                    ['z', 'Z'],
+                    ['x', 'X'],
+                    ['c', 'C'],
+                    ['v', 'V'],
+                    ['b', 'B'],
+                    ['n', 'N'],
+                    ['m', 'M'],
+                    [',', ','],
+                    ['.', '.'],
+                    ['/', '/'],
+                    ['ShiftRight', '⇧']
+                ],
+                [
+                    ['ControlLeft', 'Ctrl'],
+                    ['MetaLeft', 'Win'],
+                    ['AltLeft', 'Alt'],
+                    ['Space', '␣'],
+                    ['AltRight', 'Alt'],
+                    ['MetaRight', 'Win'],
+                    ['ControlRight', 'Ctrl'],
+                    ['ArrowLeft', '◀'],
+                    ['ArrowUp', '▲'],
+                    ['ArrowDown', '▼'],
+                    ['ArrowRight', '▶']
+                ]
+            ];
+
+            // ============================================================
+            // HELPERS
+            // ============================================================
+
+            const $ = (sel) => document.querySelector(sel);
+            const $$ = (sel) => document.querySelectorAll(sel);
+
+            function announce(text) {
+                const sr = $('#sr-announce');
+                sr.textContent = '';
+                setTimeout(() => { sr.textContent = text; }, 50);
+            }
+
+            function showToast(text, duration = 2500) {
+                const live = $('#live-region');
+                live.textContent = text;
+                live.classList.add('show');
+                clearTimeout(live._t);
+                live._t = setTimeout(() => live.classList.remove('show'), duration);
+            }
+
+            function speak(text, callback) {
+                if (!window.speechSynthesis) {
+                    if (callback) callback();
+                    return;
+                }
+                window.speechSynthesis.cancel();
+                const u = new SpeechSynthesisUtterance(text);
+                u.lang = 'id-ID';
+                u.rate = 0.85;
+                u.pitch = 1.0;
+                u.volume = 1.0;
+                if (callback) { u.onend = callback; }
+                window.speechSynthesis.speak(u);
+            }
+
+            function vibrate(pattern) {
+                if (navigator.vibrate) {
+                    navigator.vibrate(pattern);
+                }
+            }
+
+            // ============================================================
+            // NAVIGASI
+            // ============================================================
+
+            const navBtns = $$('.nav button');
+            const pages = $$('.page');
+
+            function switchPage(id) {
+                pages.forEach(p => p.classList.add('hidden'));
+                const target = $('#page-' + id);
+                if (target) target.classList.remove('hidden');
+
+                navBtns.forEach(b => {
+                    const isActive = b.dataset.page === id;
+                    b.classList.toggle('active', isActive);
+                    b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+
+                announce('Halaman ' + id + ' dibuka');
+                if (target) {
+                    target.setAttribute('tabindex', '-1');
+                    target.focus({ preventScroll: false });
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            window.switchPage = switchPage;
+
+            navBtns.forEach(b => {
+                b.addEventListener('click', () => {
+                    if (b.dataset.page) switchPage(b.dataset.page);
+                });
+                b.addEventListener('keydown', (e) => {
+                    const btns = Array.from(navBtns);
+                    const idx = btns.indexOf(b);
+                    let newIdx = idx;
+                    if (e.key === 'ArrowRight') newIdx = (idx + 1) % btns.length;
+                    else if (e.key === 'ArrowLeft') newIdx = (idx - 1 + btns.length) % btns.length;
+                    else if (e.key === 'Home') newIdx = 0;
+                    else if (e.key === 'End') newIdx = btns.length - 1;
+                    else return;
+                    e.preventDefault();
+                    btns[newIdx].focus();
+                    btns[newIdx].click();
+                });
+            });
+
+            // ============================================================
+            // GALERI
+            // ============================================================
+
+            const galleryGrid = $('#gallery-grid');
+            galleryData.forEach(item => {
+                const fig = document.createElement('figure');
+                const img = document.createElement('img');
+                img.src = `https://picsum.photos/id/${item.id}/300/300`;
+                img.alt = item.caption;
+                img.loading = 'lazy';
+                img.tabIndex = 0;
+                img.dataset.caption = item.caption;
+                img.dataset.full = `https://picsum.photos/id/${item.id}/1200/900`;
+
+                const cap = document.createElement('figcaption');
+                cap.textContent = item.caption;
+
+                fig.appendChild(img);
+                fig.appendChild(cap);
+                galleryGrid.appendChild(fig);
+
+                const openModal = () => {
+                    $('#modal-img').src = img.dataset.full;
+                    $('#modal-img').alt = img.alt;
+                    $('#modal-caption').textContent = img.dataset.caption;
+                    $('#modal').classList.add('open');
+                    $('#modal-close').focus();
+                };
+
+                img.addEventListener('click', openModal);
+                img.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault();
+                        openModal(); }
+                });
+            });
+
+            // Modal
+            const modal = $('#modal');
+            const closeModal = () => {
+                modal.classList.remove('open');
+                $('#modal-img').src = '';
+            };
+            $('#modal-close').addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+            // ============================================================
+            // FAQ
+            // ============================================================
+
+            $$('.faq-question').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const item = btn.parentElement;
+                    const answer = btn.nextElementSibling;
+                    const isOpen = item.classList.contains('open');
+
+                    item.classList.toggle('open', !isOpen);
+                    btn.setAttribute('aria-expanded', !isOpen);
+
+                    if (!isOpen) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    } else {
+                        answer.style.maxHeight = '0';
+                    }
+                });
+            });
+
+            // ============================================================
+            // KEYBOARD
+            // ============================================================
+
+            const keyboardContainer = $('#keyboard-container');
+
+            keyboardLayout.forEach(row => {
+                const rowEl = document.createElement('div');
+                rowEl.className = 'key-row';
+
+                row.forEach(([key, label]) => {
+                    const keyEl = document.createElement('button');
+                    keyEl.className = 'key';
+                    keyEl.dataset.key = key;
+                    keyEl.type = 'button';
+
+                    let ariaLabel = (keyInfo[key]?.[0] || label);
+                    const brailleChar = brailleMap[key.toLowerCase()];
+                    if (brailleChar) {
+                        ariaLabel += ', Braille: ' + brailleChar;
+                    }
+                    const fingerGuide = fingerMap[key];
+                    if (fingerGuide) {
+                        ariaLabel += ', ' + fingerGuide.replace('👆 ', '').replace('👍 ', '');
+                    }
+                    keyEl.setAttribute('aria-label', ariaLabel);
+
+                    const isSpecial = ['Escape', 'Tab', 'CapsLock', 'ShiftLeft', 'ShiftRight',
+                        'ControlLeft', 'ControlRight', 'AltLeft', 'AltRight', 'MetaLeft',
+                        'MetaRight', 'Backspace', 'Enter'
+                    ].includes(key) || key.startsWith('F');
+                    const isSpace = key === 'Space';
+                    if (isSpecial) keyEl.classList.add('special');
+                    if (isSpace) keyEl.classList.add('space');
+
+                    const labelSpan = document.createElement('span');
+                    labelSpan.className = 'key-label';
+                    labelSpan.textContent = label;
+                    keyEl.appendChild(labelSpan);
+
+                    if (brailleChar) {
+                        const brailleSpan = document.createElement('span');
+                        brailleSpan.className = 'key-braille';
+                        brailleSpan.textContent = brailleChar;
+                        brailleSpan.setAttribute('aria-hidden', 'true');
+                        keyEl.appendChild(brailleSpan);
+                    }
+
+                    const fingerHint = fingerMap[key];
+                    if (fingerHint && !isSpace) {
+                        const hintSpan = document.createElement('span');
+                        hintSpan.className = 'key-hint';
+                        hintSpan.textContent = fingerHint.replace('👆 ', '').replace('👍 ', '').substring(0, 10);
+                        hintSpan.setAttribute('aria-hidden', 'true');
+                        keyEl.appendChild(hintSpan);
+                    }
+
+                    keyEl.addEventListener('click', () => handleKey(key));
+                    rowEl.appendChild(keyEl);
+                });
+
+                keyboardContainer.appendChild(rowEl);
+            });
+
+            // DOM refs for feedback
+            const tombolNama = $('#tombol-nama');
+            const tombolBraille = $('#tombol-braille');
+            const tombolFungsi = $('#tombol-fungsi');
+            const tombolFinger = $('#tombol-finger');
+            const btnUlang = $('#btn-ulang');
+            const btnVibrate = $('#btn-vibrate');
+            const btnResetHighlight = $('#btn-reset-highlight');
+            const keyEls = $$('.key');
+
+            let lastKey = null;
+            let lastKeyData = null;
+
+            function getInfo(key) {
+                if (/^[a-zA-Z]$/.test(key)) {
+                    const upper = key.toUpperCase();
+                    const lower = key.toLowerCase();
+                    return {
+                        nama: 'Huruf ' + upper,
+                        fungsi: 'Tombol huruf ' + upper + '. ' + (comboGuide['Shift'] ? 'Shift + ' + upper +
+                            ' untuk ' + upper + ' kapital' : ''),
+                        braille: brailleMap[lower] || '',
+                        finger: fingerMap[key] || '👆 Gunakan jari yang nyaman'
+                    };
+                }
+                if (/^[0-9]$/.test(key)) {
+                    return {
+                        nama: 'Angka ' + key,
+                        fungsi: 'Tombol angka ' + key,
+                        braille: brailleMap[key] || '',
+                        finger: fingerMap[key] || '👆 Gunakan jari yang nyaman'
+                    };
+                }
+                if (/^F[1-9][0-2]?$/.test(key)) {
+                    return {
+                        nama: key,
+                        fungsi: 'Tombol fungsi ' + key + '. Gunakan untuk pintasan aplikasi.',
+                        braille: '',
+                        finger: '👆 Jari telunjuk atau tengah'
+                    };
+                }
+                const info = keyInfo[key] || [key, 'Tombol'];
+                const finger = fingerMap[key] || '👆 Gunakan jari yang nyaman';
+                const extra = comboGuide[key] || '';
+                return {
+                    nama: info[0],
+                    fungsi: info[1] + (extra ? '. ' + extra : ''),
+                    braille: '',
+                    finger: finger
+                };
+            }
+
+            function handleKey(key) {
+                const data = getInfo(key);
+                lastKey = key;
+                lastKeyData = data;
+
+                // Update display
+                const nameDisplay = data.nama;
+                const charMatch = nameDisplay.match(/Huruf ([A-Z])/);
+                if (charMatch) {
+                    tombolNama.innerHTML = `<span class="key-char">${charMatch[1]}</span> ${nameDisplay}`;
+                } else {
+                    tombolNama.innerHTML = `<span class="key-char">${data.nama.charAt(0)}</span> ${data.nama}`;
+                }
+                tombolBraille.textContent = data.braille || '—';
+                tombolFungsi.textContent = data.fungsi;
+                tombolFinger.textContent = data.finger;
+
+                // Highlight key
+                keyEls.forEach(el => {
+                    const match = el.dataset.key === key;
+                    el.dataset.pressed = match ? 'true' : 'false';
+                    el.classList.toggle('highlight', match);
+
+                    if (match) {
+                        const ring = document.createElement('span');
+                        ring.className = 'pulse-ring';
+                        el.appendChild(ring);
+                        setTimeout(() => ring.remove(), 600);
+                    }
+                });
+
+                // Speak
+                const speakText = data.nama + '. ' + data.fungsi + '. ' + data.finger;
+                speak(speakText);
+                announce(speakText);
+
+                // Vibrate
+                vibrate([50, 30, 50]);
+
+                // Show toast
+                showToast('🔊 ' + data.nama + ' — ' + data.fungsi, 2000);
+            }
+
+            // Keyboard event listener
+            document.addEventListener('keydown', function(e) {
+                // Global shortcuts
+                if (e.altKey && e.key.toLowerCase() === 'a') {
+                    e.preventDefault();
+                    toggleA11yPanel();
+                    return;
+                }
+                if (e.altKey && e.key.toLowerCase() === 'b') {
+                    e.preventDefault();
+                    toggleA11y('hc');
+                    return;
+                }
+                if (e.altKey && e.key.toLowerCase() === 'l') {
+                    e.preventDefault();
+                    switchPage('keyboard');
+                    return;
+                }
+
+                if (e.key === 'Escape') {
+                    if (modal.classList.contains('open')) { closeModal();
+                        e.preventDefault(); return; }
+                    if ($('#a11y-panel').classList.contains('open')) { closeA11yPanel();
+                        e.preventDefault(); return; }
+                }
+
+                // Ignore if typing in input
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+                let k = e.key;
+                if (k === ' ') k = 'Space';
+                if (k === 'Meta') k = 'MetaLeft';
+                if (k === 'Control') k = 'ControlLeft';
+                if (k === 'Shift') k = 'ShiftLeft';
+                if (k === 'Alt') k = 'AltLeft';
+
+                // Switch to keyboard page and handle key
+                if (!['Tab', 'Escape', 'Alt', 'Control', 'Shift', 'Meta'].includes(k)) {
+                    switchPage('keyboard');
+                }
+
+                // Allow arrow keys for navigation
+                if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(k)) {
+                    e.preventDefault();
+                }
+
+                handleKey(k);
+            });
+
+            // Button handlers
+            btnUlang.addEventListener('click', () => {
+                if (lastKeyData) {
+                    const text = lastKeyData.nama + '. ' + lastKeyData.fungsi + '. ' + lastKeyData.finger;
+                    speak(text);
+                    showToast('🔊 Mengulang: ' + text, 2000);
+                }
+            });
+
+            btnVibrate.addEventListener('click', () => {
+                vibrate([100, 50, 100, 50, 200]);
+                showToast('📳 Getaran dikirim!', 1500);
+            });
+
+            btnResetHighlight.addEventListener('click', () => {
+                keyEls.forEach(el => {
+                    el.dataset.pressed = 'false';
+                    el.classList.remove('highlight');
+                });
+                tombolNama.innerHTML = '<span class="key-char">⌨️</span> Tekan sebuah tombol';
+                tombolBraille.textContent = '';
+                tombolFungsi.textContent = 'Informasi tombol akan muncul di sini';
+                tombolFinger.textContent = '👆 Panduan jari akan muncul di sini';
+                lastKey = null;
+                lastKeyData = null;
+                showToast('↺ Reset selesai', 1500);
+            });
+
+            // ============================================================
+            // AKSESIBILITAS PANEL
+            // ============================================================
+
+            const a11yToggle = $('#a11y-toggle');
+            const a11yPanel = $('#a11y-panel');
+            const a11yClose = $('#a11y-close');
+
+            function toggleA11yPanel(forceState) {
+                const isOpen = a11yPanel.classList.contains('open');
+                const newState = forceState !== undefined ? forceState : !isOpen;
+                a11yPanel.classList.toggle('open', newState);
+                a11yPanel.setAttribute('aria-hidden', !newState);
+                a11yToggle.setAttribute('aria-expanded', newState);
+
+                if (newState) {
+                    a11yPanel.querySelector('button, input').focus();
+                    announce('Panel aksesibilitas dibuka');
+                } else {
+                    a11yToggle.focus();
+                    announce('Panel aksesibilitas ditutup');
+                }
+            }
+
+            function closeA11yPanel() { toggleA11yPanel(false); }
+
+            a11yToggle.addEventListener('click', () => toggleA11yPanel());
+            a11yClose.addEventListener('click', closeA11yPanel);
+
+            a11yPanel.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') { closeA11yPanel(); return; }
+                if (e.key !== 'Tab') return;
+
+                const focusables = a11yPanel.querySelectorAll('button, input, [tabindex]:not([tabindex="-1"])');
+                const first = focusables[0];
+                const last = focusables[focusables.length - 1];
+
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            });
+
+            // A11y actions
+            const a11yToggles = {
+                'hc': { label: 'Kontras tinggi' },
+                'grayscale': { label: 'Skala abu-abu' },
+                'invert': { label: 'Inversi warna' },
+                'dyslexic': { label: 'Font disleksia' },
+                'large-cursor': { label: 'Kursor besar' },
+                'reduce-motion': { label: 'Kurangi animasi' }
+            };
+
+            function toggleA11y(target) {
+                const isActive = document.body.classList.toggle(target);
+                const btn = document.querySelector(`[data-target="${target}"]`);
+                if (btn) btn.setAttribute('aria-pressed', isActive);
+
+                const label = a11yToggles[target]?.label || target;
+                const msg = label + (isActive ? ' diaktifkan' : ' dinonaktifkan');
+                showToast(msg);
+                announce(msg);
+                saveA11yPrefs();
+            }
+
+            let currentFontSize = 18;
+
+            function changeFontSize(delta) {
+                currentFontSize = Math.max(14, Math.min(28, currentFontSize + delta));
+                document.documentElement.style.setProperty('--font-size-base', currentFontSize + 'px');
+                showToast('Ukuran teks: ' + currentFontSize + 'px');
+                announce('Ukuran teks ' + currentFontSize + ' piksel');
+                saveA11yPrefs();
+            }
+
+            function resetFontSize() {
+                currentFontSize = 18;
+                document.documentElement.style.setProperty('--font-size-base', '18px');
+                showToast('Ukuran teks dinormalkan');
+                saveA11yPrefs();
+            }
+
+            const lineSlider = $('#line-height');
+            const lineVal = $('#line-height-val');
+            lineSlider.addEventListener('input', () => {
+                const v = lineSlider.value;
+                document.documentElement.style.setProperty('--line-height', v);
+                lineVal.textContent = v;
+                saveA11yPrefs();
+            });
+
+            const letterSlider = $('#letter-spacing');
+            const letterVal = $('#letter-spacing-val');
+            letterSlider.addEventListener('input', () => {
+                const v = letterSlider.value;
+                document.documentElement.style.setProperty('--letter-spacing', v + 'em');
+                letterVal.textContent = v;
+                saveA11yPrefs();
+            });
+
+            $$('.a11y-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const action = btn.dataset.action;
+                    if (action === 'font-inc') changeFontSize(2);
+                    else if (action === 'font-dec') changeFontSize(-2);
+                    else if (action === 'font-reset') resetFontSize();
+                    else if (action === 'toggle') toggleA11y(btn.dataset.target);
+                    else if (action === 'reset') resetAllA11y();
+                });
+            });
+
+            function resetAllA11y() {
+                Object.keys(a11yToggles).forEach(cls => {
+                    document.body.classList.remove(cls);
+                    const btn = document.querySelector(`[data-target="${cls}"]`);
+                    if (btn) btn.setAttribute('aria-pressed', 'false');
+                });
+
+                resetFontSize();
+                lineSlider.value = 1.7;
+                lineVal.textContent = '1.7';
+                document.documentElement.style.setProperty('--line-height', '1.7');
+
+                letterSlider.value = 0.01;
+                letterVal.textContent = '0.01';
+                document.documentElement.style.setProperty('--letter-spacing', '0.01em');
+
+                localStorage.removeItem('a11y-prefs');
+                showToast('Semua pengaturan dinormalkan');
+                announce('Semua pengaturan aksesibilitas dinormalkan');
+            }
+
+            // ============================================================
+            // SAVE / LOAD PREFERENCES
+            // ============================================================
+
+            function saveA11yPrefs() {
+                const prefs = {
+                    classes: Array.from(document.body.classList).filter(c => a11yToggles[c]),
+                    fontSize: currentFontSize,
+                    lineHeight: lineSlider.value,
+                    letterSpacing: letterSlider.value
+                };
+                try { localStorage.setItem('a11y-prefs', JSON.stringify(prefs)); } catch (e) {}
+            }
+
+            function loadA11yPrefs() {
+                try {
+                    const raw = localStorage.getItem('a11y-prefs');
+                    if (!raw) return;
+                    const prefs = JSON.parse(raw);
+
+                    if (prefs.classes) {
+                        prefs.classes.forEach(cls => {
+                            document.body.classList.add(cls);
+                            const btn = document.querySelector(`[data-target="${cls}"]`);
+                            if (btn) btn.setAttribute('aria-pressed', 'true');
+                        });
+                    }
+
+                    if (prefs.fontSize) {
+                        currentFontSize = prefs.fontSize;
+                        document.documentElement.style.setProperty('--font-size-base', currentFontSize + 'px');
+                    }
+
+                    if (prefs.lineHeight) {
+                        lineSlider.value = prefs.lineHeight;
+                        lineVal.textContent = prefs.lineHeight;
+                        document.documentElement.style.setProperty('--line-height', prefs.lineHeight);
+                    }
+
+                    if (prefs.letterSpacing) {
+                        letterSlider.value = prefs.letterSpacing;
+                        letterVal.textContent = prefs.letterSpacing;
+                        document.documentElement.style.setProperty('--letter-spacing', prefs.letterSpacing + 'em');
+                    }
+                } catch (e) {}
+            }
+
+            // ============================================================
+            // INIT
+            // ============================================================
+
+            loadA11yPrefs();
+            switchPage('beranda');
+
+            setTimeout(() => {
+                announce(
+                    'Selamat datang di Braille Work. Tekan Alt+A untuk membuka panel aksesibilitas. Tekan Alt+L untuk langsung ke keyboard interaktif.'
+                    );
+            }, 1000);
+
+            setTimeout(() => {
+                vibrate([100, 50, 100, 50, 200]);
+            }, 1500);
+
+        })();
+    </script>
+
+</body>
+</html>
